@@ -1,7 +1,22 @@
-## Here we can define any tables in our database. This example shows how we define a type as a table using
-## the type name as the table name and specifying it is an "export" available in the REST and other external protocols.
-type TableName @table @export {
-    id: ID @primaryKey # Here we define primary key (must be one)
-    name: String # we can define any other attributes here
-    tag: String @indexed # we can specify any attributes that should be indexed
+type ScoreEntry @table @export {
+    id: ID @primaryKey
+    playerName: String @indexed
+    score: Int @indexed
+    levelReached: Int
+    coinsCollected: Int
+    totalTimeSeconds: Float
+    createdAt: DateTime @indexed
+}
+
+type GameSession @table @export {
+    id: ID @primaryKey
+    startedAt: DateTime @indexed
+    endedAt: DateTime
+    clientId: String @indexed
+    userAgent: String
+}
+
+type ActiveCount @table @export {
+    id: ID @primaryKey
+    count: Int
 }

@@ -1,29 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Harper Application Template</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main>
-      <h1>Harper Application Template</h1>
-      <p>
-        This is an example of serving static assets using the built-in
-        <a
-          href="https://docs.harperdb.io/docs/reference/components/built-in-extensions#static"
-          >static component</a
-        >. <br />
-        You can use this component to serve web applications!
-      </p>
-      <div>
-        <p class="count" id="count">0</p>
-        <button class="decrement" id="decrement">-</button>
-        <button class="increment" id="increment">+</button>
-      </div>
-    </main>
 
-    <script src="index.js"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Thanksgiving Maze</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div id="active-players-banner" class="banner hidden">
+                <span id="active-players-count">1</span> Players Online
+            </div>
+        </header>
+
+        <main>
+            <div class="game-wrapper">
+                <div class="game-stats">
+                    <div class="stat">Level: <span id="level-display">1</span></div>
+                    <div class="stat">Score: <span id="score-display">0</span></div>
+                    <div class="stat">Time: <span id="time-display">0</span>s</div>
+                </div>
+
+                <canvas id="game-canvas" width="600" height="600"></canvas>
+
+                <div id="game-overlay" class="overlay hidden">
+                    <div class="overlay-content">
+                        <h2 id="overlay-title">Game Over</h2>
+                        <p id="overlay-message"></p>
+                        <div id="name-entry" class="hidden">
+                            <input type="text" id="player-name" placeholder="Enter your name" maxlength="15">
+                        </div>
+                        <button id="restart-btn">Play Again</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls-mobile">
+                <button class="dpad-btn up" data-key="ArrowUp">↑</button>
+                <div class="dpad-row">
+                    <button class="dpad-btn left" data-key="ArrowLeft">←</button>
+                    <button class="dpad-btn down" data-key="ArrowDown">↓</button>
+                    <button class="dpad-btn right" data-key="ArrowRight">→</button>
+                </div>
+            </div>
+
+            <div class="leaderboard-section">
+                <h2>Leaderboard</h2>
+                <div id="current-player-display" class="hidden"
+                    style="margin-bottom: 5px; color: #4ade80; font-family: 'Courier New', monospace; font-weight: bold;">
+                </div>
+                <div id="total-runs-today-display" class="hidden"
+                    style="margin-bottom: 15px; color: #4ade80; font-family: 'Courier New', monospace; font-weight: bold;">
+                </div>
+                <table id="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Score</th>
+                            <th>Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Leaderboard rows will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer>
+            <!-- Footer content removed as requested -->
+        </footer>
+    </div>
+
+    <script type="module" src="game.js"></script>
+</body>
+
 </html>
