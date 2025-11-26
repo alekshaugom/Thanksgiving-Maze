@@ -1,6 +1,16 @@
 const PROFANITY_LIST = ['badword', 'profane']; // Placeholder list
 
 export class Leaderboard extends Resource {
+	// Allow public read access (anyone can view the leaderboard)
+	allowRead() {
+		return true;
+	}
+
+	// Allow public write access (anyone can submit scores)
+	allowCreate() {
+		return true;
+	}
+
 	async get() {
 		// Return top 10 scores
 		// Use search() to get all records from ScoreEntry table
@@ -61,6 +71,11 @@ export class Leaderboard extends Resource {
 }
 
 export class SessionCount extends Resource {
+	// Allow public read access (anyone can view session count)
+	allowRead() {
+		return true;
+	}
+
 	async get() {
 		// Count total sessions
 		// For scalability, we might want to cache this or maintain a counter.
@@ -77,7 +92,16 @@ export class SessionCount extends Resource {
 // ... (omitted comments)
 
 export class ActiveCountAPI extends Resource {
-	// ... (omitted methods, keeping existing)
+	// Allow public read access (anyone can view active browser count)
+	allowRead() {
+		return true;
+	}
+
+	// Allow public write access (anyone can increment/decrement active count)
+	allowCreate() {
+		return true;
+	}
+
 	async get() {
 		const counter = await tables.ActiveCount.get('global');
 		return {
@@ -108,6 +132,11 @@ export class ActiveCountAPI extends Resource {
 }
 
 export class PlayerStats extends Resource {
+	// Allow public read access (anyone can view player statistics)
+	allowRead() {
+		return true;
+	}
+
 	async get(query) {
 		const { playerName } = query;
 		if (!playerName) return { count: 0 };
